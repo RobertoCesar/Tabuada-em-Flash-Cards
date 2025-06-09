@@ -9,6 +9,83 @@
       box-sizing: border-box;
     }
 
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 300px;
+      height: 200px;
+    }
+
+    .flipper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-container.reveal .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      backface-visibility: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .card-front {
+      background-color: #fff8dc; /* amarelo pastel */
+      color: #333;
+    }
+
+    .card-back {
+      background-color: #e0f7fa; /* azul suave */
+      color: #333;
+      transform: rotateY(180deg);
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ffffff;
+      color: #2575fc;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
+
     .ad-footer {
       margin-top: 30px;
       padding: 16px;
@@ -46,85 +123,38 @@
     .recommendation-card a:hover {
       text-decoration: underline;
     }
-
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-    }
-
-    .card {
-      background-color: white;
-      color: #333;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      width: 300px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    button {
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
-      background-color: #ffffff;
-      color: #2575fc;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #f0f0f0;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
 
-  <div class="card" id="card">Clique para ver o resultado</div>
+  <div class="flip-container" id="flipCard">
+    <div class="flipper">
+      <div class="card-face card-front" id="cardFront">2 × 3</div>
+      <div class="card-face card-back" id="cardBack">6</div>
+    </div>
+  </div>
+
   <button id="nextBtn">Próximo</button>
 
   <script>
-    const card = document.getElementById("card");
+    const flipCard = document.getElementById("flipCard");
+    const cardFront = document.getElementById("cardFront");
+    const cardBack = document.getElementById("cardBack");
     const nextBtn = document.getElementById("nextBtn");
 
     let multiplicando, multiplicador, resultado;
 
     function gerarMultiplicacao() {
-      multiplicando = Math.floor(Math.random() * 8) + 2; // 2 a 9
-      multiplicador = Math.floor(Math.random() * 8) + 2; // 2 a 9
+      multiplicando = Math.floor(Math.random() * 8) + 2;
+      multiplicador = Math.floor(Math.random() * 8) + 2;
       resultado = multiplicando * multiplicador;
-      card.textContent = `${multiplicando} × ${multiplicador}`;
-      card.dataset.revealed = "false";
+      cardFront.textContent = `${multiplicando} × ${multiplicador}`;
+      cardBack.textContent = `${multiplicando} × ${multiplicador} = ${resultado}`;
+      flipCard.classList.remove("reveal");
     }
 
-    card.addEventListener("click", () => {
-      if (card.dataset.revealed === "false") {
-        card.textContent = `${multiplicando} × ${multiplicador} = ${resultado}`;
-        card.dataset.revealed = "true";
-      }
+    flipCard.addEventListener("click", () => {
+      flipCard.classList.toggle("reveal");
     });
 
     nextBtn.addEventListener("click", () => {
@@ -134,14 +164,16 @@
     // Inicial
     gerarMultiplicacao();
   </script>
+
   <footer class="ad-footer">
-  💡 Curta matemática? Veja esse material na Amazon:
-  <a href="https://amzn.to/4kX3zno" target="_blank">clique aqui</a>
-</footer>
-<div class="recommendation-card">
-  📘 Quer reforçar a matemática em casa?
-  <a href="https://amzn.to/4kX3zno" target="_blank">Veja esse livro na Amazon</a>
-</div>
+    💡 Curta matemática? Veja esse material na Amazon:
+    <a href="https://amzn.to/4kX3zno" target="_blank">clique aqui</a>
+  </footer>
+
+  <div class="recommendation-card">
+    📘 Quer reforçar a matemática em casa?
+    <a href="https://amzn.to/4kX3zno" target="_blank">Veja esse livro na Amazon</a>
+  </div>
 
 </body>
 </html>
