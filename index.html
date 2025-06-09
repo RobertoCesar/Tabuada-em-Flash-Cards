@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabuada Interativa</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .card {
+      background-color: white;
+      color: #333;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ffffff;
+      color: #2575fc;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">Clique para ver o resultado</div>
+  <button id="nextBtn">Próximo</button>
+
+  <script>
+    const card = document.getElementById("card");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let multiplicando, multiplicador, resultado;
+
+    function gerarMultiplicacao() {
+      multiplicando = Math.floor(Math.random() * 8) + 2; // 2 a 9
+      multiplicador = Math.floor(Math.random() * 8) + 2; // 2 a 9
+      resultado = multiplicando * multiplicador;
+      card.textContent = `${multiplicando} × ${multiplicador}`;
+      card.dataset.revealed = "false";
+    }
+
+    card.addEventListener("click", () => {
+      if (card.dataset.revealed === "false") {
+        card.textContent = `${multiplicando} × ${multiplicador} = ${resultado}`;
+        card.dataset.revealed = "true";
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      gerarMultiplicacao();
+    });
+
+    // Inicial
+    gerarMultiplicacao();
+  </script>
+</body>
+</html>
