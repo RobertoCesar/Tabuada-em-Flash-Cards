@@ -1,8 +1,9 @@
-- Blue <img src="https://via.placeholder.com/20/3b82f6/3b82f6?text=+" alt="#3b82f6" />
-- Green <img src="https://via.placeholder.com/20/10b981/10b981?text=+" alt="#10b981" />
-- Red <img src="https://via.placeholder.com/20/ef4444/ef4444?text=+" alt="#ef4444" />
-- Gold <img src="https://via.placeholder.com/20/d97706/d97706?text=+" alt="#d97706" />
-- Purple <img src="https://via.placeholder.com/20/8b5cf6/8b5cf6?text=+" alt="#8b5cf6" />
-- Pink <img src="https://via.placeholder.com/20/ec4899/ec4899?text=+" alt="#ec4899" />
-- Teal <img src="https://via.placeholder.com/20/14b8a6/14b8a6?text=+" alt="#14b8a6" />
-- Gray <img src="https://via.placeholder.com/20/6b7280/6b7280?text=+" alt="#6b7280" />
+- Blue <div style="display:inline-block;width:15px;height:15px;background:#3b82f6;"></div>
+- Green <div style="display:inline-block;width:15px;height:15px;background:#10b981;"></div>
+- Red <div style="display:inline-block;width:15px;height:15px;background:#ef4444;"></div>
+- Gold <div style="display:inline-block;width:15px;height:15px;background:#d97706;"></div>
+- Purple <div style="display:inline-block;width:15px;height:15px;background:#8b5cf6;"></div>
+- Pink <div style="display:inline-block;width:15px;height:15px;background:#ec4899;"></div>
+- Teal <div style="display:inline-block;width:15px;height:15px;background:#14b8a6;"></div>
+- Gray <div style="display:inline-block;width:15px;height:15px;background:#6b7280;"></div>
+
